@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ApexVision - Next Gen Digital Solutions</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f3ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .dark .glass-nav {
+            background: rgba(15, 23, 42, 0.85);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.15), transparent 40%),
+                        radial-gradient(circle at bottom left, rgba(236, 72, 153, 0.1), transparent 40%);
+        }
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300">
+
+    <!-- Sticky Navigation -->
+    <header class="sticky top-0 z-50 glass-nav border-b border-slate-200/60 dark:border-slate-800/60 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-pink-500 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-brand-500/30">
+                        A
+                    </div>
+                    <span class="text-2xl font-extrabold tracking-tight">Apex<span class="text-brand-600 dark:text-brand-500">Vision</span></span>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex space-x-8 text-sm font-medium">
+                    <a href="#hero" class="hover:text-brand-600 dark:hover:text-brand-500 transition-colors py-2">Home</a>
+                    <a href="#features" class="hover:text-brand-600 dark:hover:text-brand-500 transition-colors py-2">Features</a>
+                    <a href="#portfolio" class="hover:text-brand-600 dark:hover:text-brand-500 transition-colors py-2">Portfolio</a>
+                    <a href="#testimonials" class="hover:text-brand-600 dark:hover:text-brand-500 transition-colors py-2">Testimonials</a>
+                    <a href="#faq" class="hover:text-brand-600 dark:hover:text-brand-500 transition-colors py-2">FAQ</a>
+                    <a href="#contact" class="hover:text-brand-600 dark:hover:text-brand-500 transition-colors py-2">Contact</a>
+                </nav>
+
+                <!-- Header CTA & Theme Toggle -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <button id="theme-toggle" class="p-2 rounded-lg text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 focus:outline-none" aria-label="Toggle Theme">
+                        <i class="fa-solid fa-moon text-lg dark:hidden"></i>
+                        <i class="fa-solid fa-sun text-lg hidden dark:block"></i>
+                    </button>
+                    <a href="#contact" class="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-medium text-sm transition-all shadow-md shadow-brand-500/20 hover:shadow-lg hover:shadow-brand-500/30">
+                        Get Started
+                    </a>
+                </div>
+
+                <!-- Mobile Hamburger Button -->
+                <div class="md:hidden flex items-center space-x-3">
+                    <button id="mobile-theme-toggle" class="p-2 rounded-lg text-slate-500 dark:text-slate-400">
+                        <i class="fa-solid fa-moon text-lg dark:hidden"></i>
+                        <i class="fa-solid fa-sun text-lg hidden dark:block"></i>
+                    </button>
+                    <button id="mobile-menu-btn" class="text-slate-600 dark:text-slate-300 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Navigation -->
+        <div class="md:hidden hidden border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 pt-2 pb-6 space-y-3" id="mobile-menu">
+            <a href="#hero" class="mobile-link block px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 font-medium">Home</a>
+            <a href="#features" class="mobile-link block px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 font-medium">Features</a>
+            <a href="#portfolio" class="mobile-link block px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 font-medium">Portfolio</a>
+            <a href="#testimonials" class="mobile-link block px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 font-medium">Testimonials</a>
+            <a href="#faq" class="mobile-link block px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 font-medium">FAQ</a>
+            <a href="#contact" class="mobile-link block px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 font-medium">Contact</a>
+            <a href="#contact" class="mobile-link block w-full text-center py-3 rounded-xl bg-brand-600 text-white font-medium shadow-md">Get Started</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="relative pt-12 pb-20 md:pt-24 md:pb-32 overflow-hidden hero-gradient">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <!-- Left Hero Content -->
+                    <div class="space-y-8 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-50 dark:bg-brand-900/40 border border-brand-200 dark:border-brand-700/50 text-brand-700 dark:text-brand-300 text-xs sm:text-sm font-semibold">
+                            <span class="flex h-2 w-2 rounded-full bg-brand-500 animate-ping"></span>
+                            Next-Gen Web Architecture v3.0
+                        </div>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight sm:leading-tight lg:leading-tight">
+                            Transforming Digital Concepts into <span class="gradient-text">Exceptional Realities</span>
+                        </h1>
+                        <p class="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                            Empower your brand with ultra-fast performance, captivating design, and intelligent UI experiences customized to accelerate your business growth.
+                        </p>
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                            <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold shadow-lg shadow-brand-500/30 transition-all hover:-translate-y-0.5 text-center">
+                                Launch Your Project <i class="fa-solid fa-arrow-right ml-2"></i>
+                            </a>
+                            <a href="#portfolio" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 font-semibold transition-all text-center">
+                                Explore Work
+                            </a>
+                        </div>
+                        <!-- Key Stats -->
+                        <div class="pt-8 grid grid-cols-3 gap-4 border-t border-slate-200 dark:border-slate-800">
+                            <div>
+                                <p class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">99.9%</p>
+                                <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Uptime Guarantee</p>
+                            </div>
+                            <div>
+                                <p class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">500+</p>
+                                <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Projects Delivered</p>
+                            </div>
+                            <div>
+                                <p class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">4.9/5</p>
+                                <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Client Rating</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Hero Visual -->
+                    <div class="relative flex justify-center">
+                        <div class="relative w-full max-w-lg">
+                            <!-- Background Glow -->
+                            <div class="absolute -top-4 -left-4 w-72 h-72 bg-purple-500 rounded-full filter blur-3xl opacity-20 animate-pulse"></div>
+                            <div class="absolute -bottom-4 -right-4 w-72 h-72 bg-brand-500 rounded-full filter blur-3xl opacity-20 animate-pulse"></div>
+                            
+                            <!-- Card Mockup -->
+                            <div class="relative bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-6 border border-slate-200/80 dark:border-slate-700/80">
+                                <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-700">
+                                    <div class="flex space-x-2">
+                                        <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                                        <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                                        <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                                    </div>
+                                    <div class="text-xs font-mono text-slate-400">dashboard.apexvision.io</div>
+                                </div>
+                                <div class="mt-6 space-y-4">
+                                    <div class="h-32 rounded-xl bg-gradient-to-r from-brand-500 to-purple-600 p-4 text-white flex flex-col justify-between">
+                                        <div class="flex justify-between items-start">
+                                            <span class="text-xs font-medium opacity-80">Live Analytics</span>
+                                            <i class="fa-solid fa-chart-line"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs opacity-80">Total Revenue</p>
+                                            <p class="text-2xl font-bold">$128,450.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-100 dark:border-slate-700">
+                                            <p class="text-xs text-slate-500 dark:text-slate-400">Active Users</p>
+                                            <p class="text-xl font-bold text-slate-800 dark:text-slate-100">14,290</p>
+                                        </div>
+                                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-100 dark:border-slate-700">
+                                            <p class="text-xs text-slate-500 dark:text-slate-400">Conversion</p>
+                                            <p class="text-xl font-bold text-emerald-500">+12.4%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-20 bg-white dark:bg-slate-800/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-xs font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest mb-3">Why Choose Us</h2>
+                    <p class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Engineered for Performance and Scale</p>
+                    <p class="mt-4 text-slate-600 dark:text-slate-300">We combine cutting-edge tech with human-centered design to craft products that users adore.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Feature Card 1 -->
+                    <div class="p-8 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+                        <div class="w-14 h-14 rounded-2xl bg-brand-100 dark:bg-brand-900/50 text-brand-600 dark:text-brand-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Lightning Fast</h3>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">Optimized asset loading and state-of-the-art code splitting ensure sub-second initial load times worldwide.</p>
+                    </div>
+
+                    <!-- Feature Card 2 -->
+                    <div class="p-8 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+                        <div class="w-14 h-14 rounded-2xl bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Enterprise Security</h3>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">Built-in SOC2 compliance standards, end-to-end encryption, and real-time threat detection systems.</p>
+                    </div>
+
+                    <!-- Feature Card 3 -->
+                    <div class="p-8 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+                        <div class="w-14 h-14 rounded-2xl bg-pink-100 dark:bg-pink-900/50 text-pink-600 dark:text-pink-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-mobile-screen"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Fully Responsive</h3>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">Seamless design adaptation across mobile, tablet, desktop, and ultra-wide displays without missing a beat.</p>
+                    </div>
+
+                    <!-- Feature Card 4 -->
+                    <div class="p-8 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-chart-pie"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Rich Analytics</h3>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">Gain deep customer behavioral insights with built-in custom event tracking and visual dashboard widgets.</p>
+                    </div>
+
+                    <!-- Feature Card 5 -->
+                    <div class="p-8 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+                        <div class="w-14 h-14 rounded-2xl bg-amber-100 dark:bg-amber-900/50 text-amber-600 dark:text-amber-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">AI Integration</h3>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">Harness smart language and generative AI workflows built directly into your platform pipelines.</p>
+                    </div>
+
+                    <!-- Feature Card 6 -->
+                    <div class="p-8 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+                        <div class="w-14 h-14 rounded-2xl bg-cyan-100 dark:bg-cyan-900/50 text-cyan-600 dark:text-cyan-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-headset"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">24/7 Dedicated Support</h3>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">Our expert engineering team is always on standby to provide rapid assistance and ongoing maintenance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio / Showcase Gallery Section -->
+        <section id="portfolio" class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-xs font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest mb-3">Selected Projects</h2>
+                    <p class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Our Recent Masterpieces</p>
+                </div>
+
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-12" id="portfolio-filters">
+                    <button data-filter="all" class="filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all bg-brand-600 text-white shadow-md">All Works</button>
+                    <button data-filter="web" class="filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-300">Web Apps</button>
+                    <button data-filter="mobile" class="filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-300">Mobile</button>
+                    <button data-filter="design" class="filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-300">Branding</button>
+                </div>
+
+                <!-- Portfolio Grid -->
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
+                    <!-- Item 1 -->
+                    <div class="portfolio-item group relative rounded-2xl overflow-hidden shadow-lg bg-slate-800" data-category="web">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="SaaS Dashboard" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="portfolio-overlay absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent opacity-0 transition-opacity duration-300 p-6 flex flex-col justify-end">
+                            <span class="text-xs font-semibold text-brand-400 uppercase tracking-wider">Web Application</span>
+                            <h3 class="text-xl font-bold text-white mb-2">CloudMetrics Analytics</h3>
+                            <p class="text-xs text-slate-300 mb-4">Enterprise level financial visualization web suite.</p>
+                            <a href="#" class="inline-flex items-center text-sm font-medium text-white hover:text-brand-300">View Case Study <i class="fa-solid fa-arrow-right ml-2 text-xs"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="portfolio-item group relative rounded-2xl overflow-hidden shadow-lg bg-slate-800" data-category="mobile">
+                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80" alt="Mobile Banking" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="portfolio-overlay absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent opacity-0 transition-opacity duration-300 p-6 flex flex-col justify-end">
+                            <span class="text-xs font-semibold text-brand-400 uppercase tracking-wider">Mobile App</span>
+                            <h3 class="text-xl font-bold text-white mb-2">NovaPay Fintech</h3>
+                            <p class="text-xs text-slate-300 mb-4">Cross-platform iOS & Android mobile wallet application.</p>
+                            <a href="#" class="inline-flex items-center text-sm font-medium text-white hover:text-brand-300">View Case Study <i class="fa-solid fa-arrow-right ml-2 text-xs"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="portfolio-item group relative rounded-2xl overflow-hidden shadow-lg bg-slate-800" data-category="design">
+                        <img src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&w=800&q=80" alt="Brand Identity" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="portfolio-overlay absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent opacity-0 transition-opacity duration-300 p-6 flex flex-col justify-end">
+                            <span class="text-xs font-semibold text-brand-400 uppercase tracking-wider">Branding</span>
+                            <h3 class="text-xl font-bold text-white mb-2">Aura Studio Rebrand</h3>
+                            <p class="text-xs text-slate-300 mb-4">Complete brand system and style guide guidelines.</p>
+                            <a href="#" class="inline-flex items-center text-sm font-medium text-white hover:text-brand-300">View Case Study <i class="fa-solid fa-arrow-right ml-2 text-xs"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="portfolio-item group relative rounded-2xl overflow-hidden shadow-lg bg-slate-800" data-category="web">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="E-commerce Portal" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="portfolio-overlay absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent opacity-0 transition-opacity duration-300 p-6 flex flex-col justify-end">
+                            <span class="text-xs font-semibold text-brand-400 uppercase tracking-wider">Web Application</span>
+                            <h3 class="text-xl font-bold text-white mb-2">UrbanMart Store</h3>
+                            <p class="text-xs text-slate-300 mb-4">High-conversion headless e-commerce store implementation.</p>
+                            <a href="#" class="inline-flex items-center text-sm font-medium text-white hover:text-brand-300">View Case Study <i class="fa-solid fa-arrow-right ml-2 text-xs"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Item 5 -->
+                    <div class="portfolio-item group relative rounded-2xl overflow-hidden shadow-lg bg-slate-800" data-category="mobile">
+                        <img src="https://images.unsplash.com/photo-1526498460520-4c246339dccb?auto=format&fit=crop&w=800&q=80" alt="Health Tracker" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="portfolio-overlay absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent opacity-0 transition-opacity duration-300 p-6 flex flex-col justify-end">
+                            <span class="text-xs font-semibold text-brand-400 uppercase tracking-wider">Mobile App</span>
+                            <h3 class="text-xl font-bold text-white mb-2">FitSync Health</h3>
+                            <p class="text-xs text-slate-300 mb-4">Real-time health telemetry tracker connected to wearables.</p>
+                            <a href="#" class="inline-flex items-center text-sm font-medium text-white hover:text-brand-300">View Case Study <i class="fa-solid fa-arrow-right ml-2 text-xs"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Item 6 -->
+                    <div class="portfolio-item group relative rounded-2xl overflow-hidden shadow-lg bg-slate-800" data-category="design">
+                        <img src="https://images.unsplash.com/photo-1542744094-3a31216994ef?auto=format&fit=crop&w=800&q=80" alt="UI Kit" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="portfolio-overlay absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent opacity-0 transition-opacity duration-300 p-6 flex flex-col justify-end">
+                            <span class="text-xs font-semibold text-brand-400 uppercase tracking-wider">Branding</span>
+                            <h3 class="text-xl font-bold text-white mb-2">Vortex Design System</h3>
+                            <p class="text-xs text-slate-300 mb-4">Comprehensive UI component kit for SaaS startups.</p>
+                            <a href="#" class="inline-flex items-center text-sm font-medium text-white hover:text-brand-300">View Case Study <i class="fa-solid fa-arrow-right ml-2 text-xs"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="py-20 bg-slate-100 dark:bg-slate-800/40">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-xs font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest mb-3">Client Feedback</h2>
+                    <p class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Trusted by Industry Leaders</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex text-amber-400 mb-4">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-slate-600 dark:text-slate-300 italic text-sm leading-relaxed mb-6">
+                                "ApexVision transformed our legacy website into an ultra-fast conversion engine. Our lead volume grew by 140% in the first quarter!"
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 pt-4 border-t border-slate-100 dark:border-slate-700">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80" alt="Sarah Jenkins" class="w-12 h-12 rounded-full object-cover">
+                            <div>
+                                <p class="font-bold text-sm text-slate-900 dark:text-white">Sarah Jenkins</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">CMO, TechFlow Inc.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex text-amber-400 mb-4">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-slate-600 dark:text-slate-300 italic text-sm leading-relaxed mb-6">
+                                "The attention to UI detail and smooth interactions made our app launch stand out in a crowded market. Truly world-class craftsmanship."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 pt-4 border-t border-slate-100 dark:border-slate-700">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="David Chen" class="w-12 h-12 rounded-full object-cover">
+                            <div>
+                                <p class="font-bold text-sm text-slate-900 dark:text-white">David Chen</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Founder, ScaleUp Labs</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="p-8 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex text-amber-400 mb-4">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-slate-600 dark:text-slate-300 italic text-sm leading-relaxed mb-6">
+                                "Professional team, clear timeline communication, and superb post-deployment support. Highly recommended for complex projects."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 pt-4 border-t border-slate-100 dark:border-slate-700">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80" alt="Elena Rostova" class="w-12 h-12 rounded-full object-cover">
+                            <div>
+                                <p class="font-bold text-sm text-slate-900 dark:text-white">Elena Rostova</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Head of Product, Vantage Global</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-20">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-xs font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest mb-3">Frequently Asked Questions</h2>
+                    <p class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Got Questions? We Have Answers</p>
+                </div>
+
+                <div class="space-y-4" id="faq-accordion">
+                    <!-- FAQ Item 1 -->
+                    <div class="faq-item rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 overflow-hidden">
+                        <button class="faq-toggle w-full px-6 py-5 text-left font-semibold text-slate-900 dark:text-white flex justify-between items-center focus:outline-none">
+                            <span>How long does a typical project implementation take?</span>
+                            <i class="fa-solid fa-chevron-down text-sm text-slate-400 transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-5 text-slate-600 dark:text-slate-300 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-3">
+                            Most standard landing pages and web portals take between 2 to 4 weeks from discovery to final deployment. Custom enterprise applications may require 6 to 12 weeks depending on scope and integrations.
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 2 -->
+                    <div class="faq-item rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 overflow-hidden">
+                        <button class="faq-toggle w-full px-6 py-5 text-left font-semibold text-slate-900 dark:text-white flex justify-between items-center focus:outline-none">
+                            <span>Do you provide ongoing technical support and maintenance?</span>
+                            <i class="fa-solid fa-chevron-down text-sm text-slate-400 transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-5 text-slate-600 dark:text-slate-300 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-3">
+                            Yes! We offer flexible post-launch retainer packages that include server monitoring, security updates, feature additions, and performance optimizations.
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 3 -->
+                    <div class="faq-item rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 overflow-hidden">
+                        <button class="faq-toggle w-full px-6 py-5 text-left font-semibold text-slate-900 dark:text-white flex justify-between items-center focus:outline-none">
+                            <span>Can you work with our existing design assets or brand guidelines?</span>
+                            <i class="fa-solid fa-chevron-down text-sm text-slate-400 transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-5 text-slate-600 dark:text-slate-300 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-3">
+                            Absolutely. We can seamlessly adapt your existing Figma designs, color tokens, and brand assets to build pixel-perfect, responsive components.
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 4 -->
+                    <div class="faq-item rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 overflow-hidden">
+                        <button class="faq-toggle w-full px-6 py-5 text-left font-semibold text-slate-900 dark:text-white flex justify-between items-center focus:outline-none">
+                            <span>How is SEO optimized for my new website?</span>
+                            <i class="fa-solid fa-chevron-down text-sm text-slate-400 transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-5 text-slate-600 dark:text-slate-300 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-3">
+                            We build every site following semantic HTML guidelines, automated sitemap generation, OpenGraph metadata tags, schema markup, and Core Web Vitals performance benchmarks.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section id="contact" class="py-20 bg-slate-100 dark:bg-slate-800/40">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <!-- Contact Info -->
+                    <div class="space-y-8">
+                        <div>
+                            <h2 class="text-xs font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest mb-3">Get in Touch</h2>
+                            <p class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Let’s Start Your Next Big Project</p>
+                            <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+                                Have a project in mind or need assistance? Fill out the form or reach out to our team directly.
+                            </p>
+                        </div>
+
+                        <div class="space-y-6">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xl">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Email Us</p>
+                                    <p class="font-semibold text-slate-900 dark:text-white">hello@apexvision.io</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xl">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Call Us</p>
+                                    <p class="font-semibold text-slate-900 dark:text-white">+1 (800) 555-0199</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xl">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Visit Us</p>
+                                    <p class="font-semibold text-slate-900 dark:text-white">100 Innovation Way, San Francisco, CA</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form Card -->
+                    <div class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-lg border border-slate-200/80 dark:border-slate-700">
+                        <form id="contact-form" class="space-y-6" novalidate>
+                            <!-- Alert Notification Box -->
+                            <div id="form-alert" class="hidden p-4 rounded-xl text-sm font-medium"></div>
+
+                            <div>
+                                <label for="name" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">Full Name</label>
+                                <input type="text" id="name" required placeholder="John Doe" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all">
+                                <span class="error-msg text-xs text-red-500 hidden mt-1">Please enter your name.</span>
+                            </div>
+
+                            <div>
+                                <label for="email" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">Email Address</label>
+                                <input type="email" id="email" required placeholder="john@example.com" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all">
+                                <span class="error-msg text-xs text-red-500 hidden mt-1">Please enter a valid email address.</span>
+                            </div>
+
+                            <div>
+                                <label for="message" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">Message</label>
+                                <textarea id="message" rows="4" required placeholder="Tell us about your project requirements..." class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all"></textarea>
+                                <span class="error-msg text-xs text-red-500 hidden mt-1">Please provide details in your message.</span>
+                            </div>
+
+                            <button type="submit" class="w-full py-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold shadow-md shadow-brand-500/20 transition-all hover:shadow-lg">
+                                Send Message <i class="fa-solid fa-paper-plane ml-2 text-sm"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-slate-800">
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2 text-white font-bold text-xl">
+                        <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white">A</div>
+                        ApexVision
+                    </div>
+                    <p class="text-sm leading-relaxed">Designing high-impact digital experiences for forward-thinking brands.</p>
+                </div>
+
+                <div>
+                    <h4 class="text-white text-sm font-semibold mb-4">Navigation</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#hero" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#features" class="hover:text-white transition-colors">Features</a></li>
+                        <li><a href="#portfolio" class="hover:text-white transition-colors">Portfolio</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white text-sm font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Security</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white text-sm font-semibold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4 text-lg">
+                        <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-github"></i></a>
+                        <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-8 text-center text-xs text-slate-500">
+                &copy; <span id="year"></span> ApexVision Inc. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set dynamic current copyright year
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // ------------------------------------
+            // Dark Mode Theme Switcher Logic
+            // ------------------------------------
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const mobileThemeToggleBtn = document.getElementById('mobile-theme-toggle');
+
+            const toggleTheme = () => {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+            };
+
+            // Initialize dark mode based on saved preference or system preference
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+
+            if (themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
+            if (mobileThemeToggleBtn) mobileThemeToggleBtn.addEventListener('click', toggleTheme);
+
+            // ------------------------------------
+            // Mobile Menu Toggle Logic
+            // ------------------------------------
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                menuIcon.classList.toggle('fa-bars');
+                menuIcon.classList.toggle('fa-xmark');
+            });
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.add('fa-bars');
+                    menuIcon.classList.remove('fa-xmark');
+                });
+            });
+
+            // ------------------------------------
+            // Portfolio Category Filter Logic
+            // ------------------------------------
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Update active button state
+                    filterBtns.forEach(b => {
+                        b.classList.remove('bg-brand-600', 'text-white', 'shadow-md');
+                        b.classList.add('bg-slate-200', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
+                    });
+                    btn.classList.add('bg-brand-600', 'text-white', 'shadow-md');
+                    btn.classList.remove('bg-slate-200', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
+
+                    const filter = btn.getAttribute('data-filter');
+
+                    portfolioItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // ------------------------------------
+            // FAQ Accordion Toggle
+            // ------------------------------------
+            const faqToggles = document.querySelectorAll('.faq-toggle');
+
+            faqToggles.forEach(toggle => {
+                toggle.addEventListener('click', () => {
+                    const content = toggle.nextElementSibling;
+                    const icon = toggle.querySelector('i');
+
+                    // Close other items
+                    document.querySelectorAll('.faq-content').forEach(c => {
+                        if (c !== content) {
+                            c.classList.add('hidden');
+                            if (c.previousElementSibling) {
+                                c.previousElementSibling.querySelector('i').classList.remove('rotate-180');
+                            }
+                        }
+                    });
+
+                    // Toggle current item
+                    content.classList.toggle('hidden');
+                    icon.classList.toggle('rotate-180');
+                });
+            });
+
+            // ------------------------------------
+            // Contact Form Logic Validation
+            // ------------------------------------
+            const contactForm = document.getElementById('contact-form');
+            const formAlert = document.getElementById('form-alert');
+
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                let isValid = true;
+
+                const nameInput = document.getElementById('name');
+                const emailInput = document.getElementById('email');
+                const messageInput = document.getElementById('message');
+
+                // Validate Name
+                if (!nameInput.value.trim()) {
+                    showFieldError(nameInput, true);
+                    isValid = false;
+                } else {
+                    showFieldError(nameInput, false);
+                }
+
+                // Validate Email
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailInput.value.trim())) {
+                    showFieldError(emailInput, true);
+                    isValid = false;
+                } else {
+                    showFieldError(emailInput, false);
+                }
+
+                // Validate Message
+                if (!messageInput.value.trim()) {
+                    showFieldError(messageInput, true);
+                    isValid = false;
+                } else {
+                    showFieldError(messageInput, false);
+                }
+
+                if (isValid) {
+                    formAlert.className = "p-4 rounded-xl text-sm font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800";
+                    formAlert.textContent = "Thank you! Your message has been sent successfully. We will get back to you shortly.";
+                    formAlert.classList.remove('hidden');
+                    contactForm.reset();
+                }
+            });
+
+            function showFieldError(input, isError) {
+                const errorSpan = input.nextElementSibling;
+                if (isError) {
+                    input.classList.add('border-red-500');
+                    if (errorSpan) errorSpan.classList.remove('hidden');
+                } else {
+                    input.classList.remove('border-red-500');
+                    if (errorSpan) errorSpan.classList.add('hidden');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
