@@ -11,6 +11,15 @@
     --pad: clamp(20px, 6vw, 80px);
     
 }
+
+body.dark-mode {
+    --bg: #12101c;
+    --paper: #1c1928;
+    --ink: #f3f0fa;
+    --accent: #7180ff;
+    --nav-text: #d8d4e5;
+    --border: #f3f0fa;
+}
     --display: 'Bricolage Grotesque', 'Segoe UI', sans-serif;
     --body: 'Figtree', 'Segoe UI', sans-serif;
     --pad: clamp(20px, 6vw, 80px);
@@ -30,7 +39,6 @@ body {
 
 a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 
-/* Nav */
 header {
     position: sticky;
     top: 0;
@@ -49,13 +57,11 @@ nav ul { display: flex; gap: 24px; list-style: none; }
 nav a { color: #dcd8e8; text-decoration: none; font-size: 16px; }
 nav a:hover { color: white; text-decoration: underline; text-underline-offset: 6px; }
 
-/* Sections */
 section { padding: clamp(64px, 10vw, 110px) var(--pad); }
 .inner { max-width: 760px; margin: 0 auto; }
 
 h1, h2 { font-family: var(--display); font-weight: 800; letter-spacing: -0.02em; line-height: 1.05; }
 
-/* Home */
 #home {
     min-height: 80vh;
     display: flex;
@@ -63,7 +69,6 @@ h1, h2 { font-family: var(--display); font-weight: 800; letter-spacing: -0.02em;
     text-align: center;
 }
 
-/* Profile Picture */
 .profile-picture {
     width: 200px;
     height: 200px;
@@ -95,12 +100,10 @@ h1 { font-size: clamp(52px, 11vw, 110px); margin-bottom: 24px; }
 }
 .button:hover { background: var(--accent); }
 
-/* About */
 #about { background: var(--paper); text-align: center; }
 h2 { font-size: clamp(34px, 5vw, 52px); margin-bottom: 20px; }
 #about p { font-size: 20px; }
 
-/* Tasks */
 #tasks h2 { text-align: center; margin-bottom: 36px; }
 
 .task-list { list-style: none; border-top: 2px solid var(--ink); }
@@ -128,7 +131,6 @@ h2 { font-size: clamp(34px, 5vw, 52px); margin-bottom: 20px; }
 }
 .task-list a:hover { background: var(--accent); border-color: var(--accent); color: white; }
 
-/* Footer */
 footer { background: var(--ink); color: #dcd8e8; text-align: center; font-size: 15px; padding: 24px 20px; }
 
 @media (max-width: 560px) {
@@ -141,10 +143,8 @@ footer { background: var(--ink); color: #dcd8e8; text-align: center; font-size: 
     * { transition: none !important; }
 }
 
-/* Active nav link (set by landing.js) */
 nav a.active { color: white; text-decoration: underline; text-underline-offset: 6px; }
 
-/* --- Home Animations --- */
 
 @keyframes fadeUp {
     from {
