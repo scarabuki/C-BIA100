@@ -3,6 +3,12 @@
     --paper: #efedf3;
     --ink: #1f1b2e;
     --accent: #2f46f0;
+    --nav-text: #dcd8e8;
+    --border: #1f1b2e;
+    --display: 'Bricolage Grotesque', 'Segoe UI', sans-serif;
+    --body: 'Figtree', 'Segoe UI', sans-serif;
+    --pad: clamp(20px, 6vw, 80px);
+}
     --display: 'Bricolage Grotesque', 'Segoe UI', sans-serif;
     --body: 'Figtree', 'Segoe UI', sans-serif;
     --pad: clamp(20px, 6vw, 80px);
