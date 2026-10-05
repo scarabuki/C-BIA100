@@ -487,3 +487,71 @@ footer {
         transition: none !important;
     }
 }
+
+/* =========================
+   MOVING BACKGROUND
+   ========================= */
+
+body {
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Moving background layer */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.35;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Purple blob */
+body::before {
+    background: #8b5cf6;
+    top: -150px;
+    left: -150px;
+    animation: floatingBlob1 15s ease-in-out infinite alternate;
+}
+
+/* Blue blob */
+body::after {
+    background: #3b82f6;
+    bottom: -180px;
+    right: -150px;
+    animation: floatingBlob2 18s ease-in-out infinite alternate;
+}
+
+/* Blob movement */
+@keyframes floatingBlob1 {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(250px, 150px) scale(1.15);
+    }
+
+    100% {
+        transform: translate(100px, 350px) scale(0.9);
+    }
+}
+
+@keyframes floatingBlob2 {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(-200px, -150px) scale(1.2);
+    }
+
+    100% {
+        transform: translate(-100px, -300px) scale(0.9);
+    }
+}
