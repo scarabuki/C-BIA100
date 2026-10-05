@@ -555,3 +555,94 @@ body::after {
         transform: translate(-100px, -300px) scale(0.9);
     }
 }
+
+/* =========================
+   TASK CARDS
+   ========================= */
+
+.task-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.task-card {
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    padding: 35px;
+    min-height: 300px;
+
+    display: flex;
+    flex-direction: column;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background-color 0.3s ease;
+}
+
+/* Task number */
+
+.task-number {
+    font-family: var(--display);
+    font-size: 1rem;
+    font-weight: 800;
+    opacity: 0.5;
+    margin-bottom: 45px;
+}
+
+/* Task title */
+
+.task-card h3 {
+    font-family: var(--display);
+    font-size: 1.8rem;
+    margin: 0 0 12px;
+}
+
+/* Description */
+
+.task-card p {
+    font-family: var(--body);
+    line-height: 1.6;
+    margin: 0;
+    opacity: 0.75;
+}
+
+/* Project button */
+
+.task-card a {
+    margin-top: auto;
+    padding-top: 30px;
+
+    font-family: var(--body);
+    font-weight: 600;
+    text-decoration: none;
+
+    color: var(--ink);
+
+    transition: transform 0.3s ease;
+}
+
+/* HOVER EFFECT */
+
+.task-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 8px 8px 0 var(--ink);
+}
+
+.task-card:hover a {
+    transform: translateX(6px);
+}
+
+@media (max-width: 800px) {
+
+    .task-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .task-card {
+        min-height: 260px;
+    }
+
+}
