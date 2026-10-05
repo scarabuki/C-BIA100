@@ -4,13 +4,16 @@
     --ink: #1f1b2e;
     --accent: #2f46f0;
     --nav-text: #dcd8e8;
-    --border: #1f1b2e;
 
     --display: 'Bricolage Grotesque', 'Segoe UI', sans-serif;
     --body: 'Figtree', 'Segoe UI', sans-serif;
+
     --pad: clamp(20px, 6vw, 80px);
-    
 }
+
+/* =========================
+   NIGHT MODE COLORS
+   ========================= */
 
 body.dark-mode {
     --bg: #12101c;
@@ -18,16 +21,23 @@ body.dark-mode {
     --ink: #f3f0fa;
     --accent: #7180ff;
     --nav-text: #d8d4e5;
-    --border: #f3f0fa;
-}
-    --display: 'Bricolage Grotesque', 'Segoe UI', sans-serif;
-    --body: 'Figtree', 'Segoe UI', sans-serif;
-    --pad: clamp(20px, 6vw, 80px);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+/* =========================
+   RESET
+   ========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 70px;
+}
 
 body {
     font-family: var(--body);
@@ -35,116 +45,232 @@ body {
     line-height: 1.6;
     background: var(--bg);
     color: var(--ink);
+
+    transition:
+        background-color 0.35s ease,
+        color 0.35s ease;
 }
 
-a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+a:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+}
+
+
+/* =========================
+   NAVIGATION
+   ========================= */
 
 header {
     position: sticky;
     top: 0;
     z-index: 10;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 16px;
+
     padding: 16px var(--pad);
+
     background: var(--ink);
+
+    transition: background-color 0.35s ease;
 }
 
-.logo { font-family: var(--display); font-weight: 700; color: white; text-decoration: none; }
+.logo {
+    font-family: var(--display);
+    font-weight: 700;
+    color: var(--bg);
+    text-decoration: none;
+}
 
-nav ul { display: flex; gap: 24px; list-style: none; }
-nav a { color: #dcd8e8; text-decoration: none; font-size: 16px; }
-nav a:hover { color: white; text-decoration: underline; text-underline-offset: 6px; }
+nav ul {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    list-style: none;
+}
 
-section { padding: clamp(64px, 10vw, 110px) var(--pad); }
-.inner { max-width: 760px; margin: 0 auto; }
+nav a {
+    color: var(--nav-text);
+    text-decoration: none;
+    font-size: 16px;
 
-h1, h2 { font-family: var(--display); font-weight: 800; letter-spacing: -0.02em; line-height: 1.05; }
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+nav a:hover {
+    color: white;
+    text-decoration: underline;
+    text-underline-offset: 6px;
+}
+
+nav a.active {
+    color: white;
+    text-decoration: underline;
+    text-underline-offset: 6px;
+}
+
+
+/* =========================
+   NIGHT MODE BUTTON
+   ========================= */
+
+#theme-toggle {
+    border: none;
+    background: transparent;
+
+    color: white;
+    font-size: 20px;
+
+    cursor: pointer;
+
+    padding: 2px 6px;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+#theme-toggle:hover {
+    transform: scale(1.15);
+    opacity: 0.8;
+}
+
+
+/* =========================
+   SECTIONS
+   ========================= */
+
+section {
+    padding: clamp(64px, 10vw, 110px) var(--pad);
+}
+
+.inner {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+h1,
+h2 {
+    font-family: var(--display);
+    font-weight: 800;
+
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+}
+
+
+/* =========================
+   HOME
+   ========================= */
 
 #home {
     min-height: 80vh;
+
     display: flex;
     align-items: center;
+
     text-align: center;
 }
 
+
+/* =========================
+   PROFILE PICTURE
+   ========================= */
+
 .profile-picture {
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
+
     margin: 0 auto 30px;
+
     border-radius: 50%;
     overflow: hidden;
+
     border: 5px solid var(--ink);
+
+    animation: fadeUp 0.8s ease-out both;
+
+    transition:
+        border-color 0.35s ease,
+        transform 0.3s ease;
+}
+
+.profile-picture:hover {
+    transform: scale(1.03);
 }
 
 .profile-picture img {
     width: 100%;
     height: 100%;
+
     object-fit: cover;
     display: block;
 }
 
-h1 { font-size: clamp(52px, 11vw, 110px); margin-bottom: 24px; }
-#home p { font-size: 20px; margin: 0 auto 32px; max-width: 28em; }
+
+/* =========================
+   HOME TEXT
+   ========================= */
+
+h1 {
+    font-size: clamp(52px, 11vw, 110px);
+    margin-bottom: 24px;
+
+    animation: fadeUp 0.8s ease-out 0.15s both;
+}
+
+#home p {
+    font-size: 20px;
+
+    margin: 0 auto 32px;
+
+    max-width: 28em;
+
+    animation: fadeUp 0.8s ease-out 0.3s both;
+}
+
+
+/* =========================
+   MAIN BUTTON
+   ========================= */
 
 .button {
     display: inline-block;
+
     padding: 14px 30px;
+
     border-radius: 999px;
+
     background: var(--ink);
+    color: var(--bg);
+
+    font-weight: 600;
+    text-decoration: none;
+
+    animation: fadeUp 0.8s ease-out 0.45s both;
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.2s ease;
+}
+
+.button:hover {
+    background: var(--accent);
     color: white;
-    font-weight: 600;
-    text-decoration: none;
-    transition: background 0.2s;
-}
-.button:hover { background: var(--accent); }
 
-#about { background: var(--paper); text-align: center; }
-h2 { font-size: clamp(34px, 5vw, 52px); margin-bottom: 20px; }
-#about p { font-size: 20px; }
-
-#tasks h2 { text-align: center; margin-bottom: 36px; }
-
-.task-list { list-style: none; border-top: 2px solid var(--ink); }
-
-.task-list li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-    padding: 22px 0;
-    border-bottom: 1px solid var(--ink);
+    transform: translateY(-3px);
 }
 
-.task-list strong { display: block; font-family: var(--display); font-size: 22px; }
 
-.task-list a {
-    flex-shrink: 0;
-    color: var(--ink);
-    font-weight: 600;
-    text-decoration: none;
-    padding: 8px 20px;
-    border: 2px solid var(--ink);
-    border-radius: 999px;
-    transition: background 0.2s, color 0.2s;
-}
-.task-list a:hover { background: var(--accent); border-color: var(--accent); color: white; }
-
-footer { background: var(--ink); color: #dcd8e8; text-align: center; font-size: 15px; padding: 24px 20px; }
-
-@media (max-width: 560px) {
-    header { flex-direction: column; gap: 8px; }
-    .task-list li { flex-direction: column; align-items: flex-start; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    * { transition: none !important; }
-}
-
-nav a.active { color: white; text-decoration: underline; text-underline-offset: 6px; }
-
+/* =========================
+   SUBTLE HOME ANIMATION
+   ========================= */
 
 @keyframes fadeUp {
     from {
@@ -158,32 +284,174 @@ nav a.active { color: white; text-decoration: underline; text-underline-offset: 
     }
 }
 
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0);
+
+/* =========================
+   ABOUT
+   ========================= */
+
+#about {
+    background: var(--paper);
+
+    text-align: center;
+
+    transition: background-color 0.35s ease;
+}
+
+h2 {
+    font-size: clamp(34px, 5vw, 52px);
+    margin-bottom: 20px;
+}
+
+#about p {
+    font-size: 20px;
+}
+
+
+/* =========================
+   TASKS
+   ========================= */
+
+#tasks h2 {
+    text-align: center;
+    margin-bottom: 36px;
+}
+
+.task-list {
+    list-style: none;
+
+    border-top: 2px solid var(--ink);
+}
+
+.task-list li {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 16px;
+
+    padding: 22px 0;
+
+    border-bottom: 1px solid var(--ink);
+
+    transition:
+        padding-left 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.task-list li:hover {
+    padding-left: 8px;
+}
+
+.task-list strong {
+    display: block;
+
+    font-family: var(--display);
+    font-size: 22px;
+}
+
+
+/* =========================
+   TASK BUTTONS
+   ========================= */
+
+.task-list a {
+    flex-shrink: 0;
+
+    color: var(--ink);
+
+    font-weight: 600;
+    text-decoration: none;
+
+    padding: 8px 20px;
+
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.task-list a:hover {
+    background: var(--accent);
+
+    border-color: var(--accent);
+
+    color: white;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   FOOTER
+   ========================= */
+
+footer {
+    background: var(--ink);
+
+    color: var(--nav-text);
+
+    text-align: center;
+
+    font-size: 15px;
+
+    padding: 24px 20px;
+
+    transition:
+        background-color 0.35s ease,
+        color 0.35s ease;
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 560px) {
+
+    header {
+        flex-direction: column;
+        gap: 8px;
     }
 
-    50% {
-        transform: translateY(-6px);
+    nav ul {
+        gap: 16px;
+    }
+
+    .task-list li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .profile-picture {
+        width: 140px;
+        height: 140px;
+    }
+
+    h1 {
+        font-size: clamp(48px, 14vw, 70px);
     }
 }
 
-.profile-picture {
-    animation: fadeUp 0.8s ease-out both;
-}
 
-.profile-picture img {
-    animation: float 4s ease-in-out 1s infinite;
-}
+/* =========================
+   REDUCE MOTION
+   ========================= */
 
-#home h1 {
-    animation: fadeUp 0.8s ease-out 0.15s both;
-}
+@media (prefers-reduced-motion: reduce) {
 
-#home p {
-    animation: fadeUp 0.8s ease-out 0.3s both;
-}
+    html {
+        scroll-behavior: auto;
+    }
 
-#home .button {
-    animation: fadeUp 0.8s ease-out 0.45s both;
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
 }
