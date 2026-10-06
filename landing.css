@@ -774,3 +774,63 @@ body::after {
     }
 
 }
+
+/* =========================
+   CONTACT
+   ========================= */
+
+#contact {
+    padding: 100px var(--pad);
+}
+
+#contact .inner {
+    max-width: 900px;
+}
+
+#contact p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 25px;
+    border: 2px solid var(--ink);
+    background: var(--paper);
+}
+
+.contact-item > span {
+    font-size: 1.8rem;
+}
+
+.contact-item strong {
+    display: block;
+    margin-bottom: 5px;
+    font-family: var(--display);
+}
+
+.contact-item a {
+    color: var(--ink);
+    text-decoration: none;
+}
+
+.contact-item a:hover {
+    text-decoration: underline;
+}
+
+/* Mobile */
+
+@media (max-width: 800px) {
+    .contact-info {
+        grid-template-columns: 1fr;
+    }
+}
