@@ -19,10 +19,3 @@ const observer = new IntersectionObserver(
 );
 
 sections.forEach((section) => observer.observe(section));
-
-// Start background music after the visitor's first interaction
-const bgMusic = document.getElementById("bg-music");
-
-document.addEventListener("click", () => {
-    bgMusic.play();
-}, { once: true });
